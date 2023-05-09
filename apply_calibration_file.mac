@@ -1,0 +1,18 @@
+// applies calibration file to analysis tree
+
+void apply_calibration_file()
+{
+    const char *analysis_filename = "analysis00000_000.root";
+    const char *cal_file = "calibration_mapping.cal";
+
+    // open analysis tree
+    TFile f(analysis_filename, "read");
+
+    f.ls();
+
+    // apply calibration file
+    TChannel::ReadCalFile(cal_file);
+    TChannel::WriteToRoot();
+
+    f.Close();
+}
